@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Double Your Income | SummitHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:wght@300;400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111214;
+    --card-bg: #161819;
+    --border: #2a2c2f;
+    --accent: #E8FF47;
+    --accent2: #FF6B35;
+    --white: #f5f5f0;
+    --muted: #7a7d82;
+    --text: #d8d9db;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Epilogue', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: .4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(10,10,10,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,.04);
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: .12em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: .8rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .55rem 1.4rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,255,71,.25); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* diagonal accent stripe */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 55%; height: 140%;
+    background: linear-gradient(135deg, transparent 40%, rgba(232,255,71,.04) 40%, rgba(232,255,71,.04) 60%, transparent 60%);
+    transform: rotate(-8deg);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    letter-spacing: .18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: .75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block; width: 2.5rem; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: .92;
+    letter-spacing: .02em;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .hero h1 .line-accent { color: var(--accent); display: block; }
+  .hero h1 .line-stroke {
+    -webkit-text-stroke: 1.5px var(--white);
+    color: transparent;
+    display: block;
+  }
+
+  .hero-sub {
+    max-width: 540px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    margin-top: .5rem;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+
+  .hero-cta-group { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 1rem 2.4rem;
+    border-radius: 2px;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: .6rem;
+    transition: transform .2s, box-shadow .2s;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,.15);
+    transform: translateX(-100%);
+    transition: transform .3s;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(232,255,71,.35); }
+  .btn-primary .arrow { font-size: 1.2rem; transition: transform .2s; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+
+  .price-tag {
+    font-family: var(--font-mono);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  .price-tag strong { color: var(--accent2); font-size: 1.1rem; font-family: var(--font-body); font-weight: 700; }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    letter-spacing: .04em;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: .78rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-top: .25rem; }
+
+  /* ── PAIN SECTION ── */
+  .pain {
+    padding: 6rem 5%;
+    background: var(--off-black);
+    position: relative;
+  }
+  .pain::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--accent2), transparent);
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .2em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    max-width: 860px;
+  }
+
+  .pain-item {
+    background: var(--off-black);
+    padding: 1.8rem 2rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: background .2s;
+  }
+  .pain-item:hover { background: var(--card-bg); }
+  .pain-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+  .pain-text { font-size: .95rem; color: var(--text); line-height: 1.6; }
+  .pain-text strong { color: var(--white); display: block; margin-bottom: .2rem; font-size: 1rem; }
+
+  .pain-closer {
+    margin-top: 2.5rem;
+    font-size: 1.15rem;
+    color: var(--white);
+    font-weight: 500;
+    max-width: 620px;
+    line-height: 1.65;
+  }
+  .pain-closer span { color: var(--accent); font-weight: 700; }
+
+  /* ── SOLUTION ── */
+  .solution {
+    padding: 6rem 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .book-mockup {
+    position: relative;
+    display: flex; justify-content: center;
+  }
+  .book-cover {
+    width: 240px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #1a1c1e 0%, #0d0e0f 100%);
+    border: 1px solid rgba(232,255,71,.2);
+    border-radius: 4px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 20px 20px 60px rgba(0,0,0,.6), -4px -4px 20px rgba(232,255,71,.05);
+    transform: rotate(-2deg);
+    transition: transform .3s;
+  }
+  .book-cover:hover { transform: rotate(0deg) scale(1.02); }
+  .book-cover-badge {
+    position: absolute; top: -14px; right: -14px;
+    background: var(--accent); color: var(--black);
+    font-family: var(--font-display); font-size: 1.1rem;
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    letter-spacing: .05em;
+    box-shadow: 0 4px 16px rgba(232,255,71,.4);
+  }
+  .book-cover-logo {
+    font-family: var(--font-display); font-size: .85rem;
+    letter-spacing: .2em; color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .book-cover-title {
+    font-family: var(--font-display); font-size: 1.9rem;
+    line-height: 1; letter-spacing: .04em; color: var(--white);
+    margin-bottom: .4rem;
+  }
+  .book-cover-title span { color: var(--accent); display: block; }
+  .book-cover-sub { font-size: .72rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+  .book-cover-line {
+    width: 40px; height: 2px; background: var(--accent); margin: 1rem auto;
+  }
+  .book-cover-icon { font-size: 2.5rem; }
+
+  .book-shadow {
+    position: absolute; bottom: -20px; left: 50%;
+    transform: translateX(-40%) rotate(-2deg);
+    width: 200px; height: 20px;
+    background: rgba(0,0,0,.5);
+    filter: blur(12px);
+  }
+
+  .solution-content {}
+  .solution-content h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .solution-content h2 span { color: var(--accent); }
+  .solution-content p {
+    color: var(--muted); font-size: 1rem; line-height: 1.8;
+    margin-bottom: 1.5rem; font-weight: 300;
+  }
+  .solution-content p strong { color: var(--text); font-weight: 600; }
+
+  .dual-transform {
+    display: flex; flex-direction: column; gap: .75rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .transform-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--card-bg);
+    transition: border-color .2s;
+  }
+  .transform-item:hover { border-color: var(--accent); }
+  .transform-num {
+    font-family: var(--font-display); font-size: 2rem;
+    color: var(--accent); line-height: 1; flex-shrink: 0; width: 2rem;
+  }
+  .transform-text strong { display: block; font-size: .95rem; color: var(--white); margin-bottom: .1rem; }
+  .transform-text span { font-size: .85rem; color: var(--muted); }
+
+  /* ── CHAPTERS ── */
+  .chapters {
+    padding: 6rem 5%;
+    background: var(--off-black);
+  }
+  .chapters-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .chapters-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--white); line-height: 1;
+  }
+  .chapters-header h2 span { color: var(--accent); }
+  .chapters-count {
+    font-family: var(--font-mono); font-size: .8rem;
+    color: var(--muted); letter-spacing: .1em;
+  }
+
+  .chapters-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+  .chapter-item {
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--off-black);
+    cursor: default;
+    transition: background .2s;
+    position: relative;
+  }
+  .chapter-item:hover { background: var(--card-bg); }
+  .chapter-item::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+    background: var(--accent);
+    transition: width .2s;
+  }
+  .chapter-item:hover::before { width: 3px; }
+  .ch-num {
+    font-family: var(--font-mono); font-size: .75rem;
+    color: var(--muted); flex-shrink: 0; padding-top: .25rem;
+    width: 2rem; letter-spacing: .1em;
+  }
+  .ch-body { flex: 1; }
+  .ch-title { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: .3rem; }
+  .ch-desc { font-size: .88rem; color: var(--muted); line-height: 1.5; }
+  .ch-tag {
+    font-size: .7rem; padding: .2rem .6rem; border-radius: 2px;
+    font-family: var(--font-mono); flex-shrink: 0; align-self: flex-start;
+    margin-top: .3rem;
+  }
+  .tag-key { background: rgba(232,255,71,.1); color: var(--accent); }
+  .tag-bonus { background: rgba(255,107,53,.1); color: var(--accent2); }
+
+  /* ── WHO IS THIS FOR ── */
+  .who {
+    padding: 6rem 5%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+  }
+  .who h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--white); line-height: 1;
+    margin-bottom: .5rem;
+  }
+  .who h2 span { color: var(--accent2); }
+  .who-intro { font-size: .95rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+
+  .who-list { display: flex; flex-direction: column; gap: .75rem; }
+  .who-item {
+    display: flex; gap: .75rem; align-items: flex-start;
+    font-size: .95rem; color: var(--text); line-height: 1.5;
+  }
+  .who-item::before {
+    content: '→';
+    color: var(--accent); flex-shrink: 0; font-weight: 700;
+    margin-top: .05rem;
+  }
+
+  .who-not { margin-top: 2rem; }
+  .who-not-title {
+    font-size: .72rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--muted); font-family: var(--font-mono); margin-bottom: 1rem;
+  }
+  .who-not-list { display: flex; flex-direction: column; gap: .6rem; }
+  .who-not-item {
+    display: flex; gap: .75rem; align-items: flex-start;
+    font-size: .88rem; color: var(--muted); line-height: 1.5;
+  }
+  .who-not-item::before { content: '✕'; color: #444; flex-shrink: 0; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 6rem 5%;
+    background: var(--off-black);
+  }
+  .testimonials h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--white); margin-bottom: .5rem;
+  }
+  .testimonials h2 span { color: var(--accent); }
+  .testi-note {
+    font-size: .82rem; color: var(--muted); margin-bottom: 2.5rem;
+    font-family: var(--font-mono);
+  }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .testi-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    padding: 1.75rem; border-radius: 3px;
+    transition: border-color .2s, transform .2s;
+  }
+  .testi-card:hover { border-color: rgba(232,255,71,.2); transform: translateY(-3px); }
+  .testi-quote {
+    font-size: .95rem; color: var(--text); line-height: 1.7;
+    margin-bottom: 1.25rem; font-style: italic;
+  }
+  .testi-quote::before { content: '"'; color: var(--accent); font-size: 1.4rem; font-style: normal; font-family: var(--font-display); }
+  .testi-author { display: flex; align-items: center; gap: .75rem; }
+  .testi-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 1rem; color: var(--black);
+    flex-shrink: 0;
+  }
+  .testi-name { font-size: .88rem; font-weight: 600; color: var(--white); }
+  .testi-role { font-size: .78rem; color: var(--muted); }
+  .testi-result {
+    margin-top: 1rem; padding: .6rem .9rem;
+    background: rgba(232,255,71,.06); border-left: 2px solid var(--accent);
+    font-size: .82rem; color: var(--accent); font-family: var(--font-mono);
+  }
+
+  /* ── PRICING ── */
+  .pricing {
+    padding: 6rem 5%;
+    text-align: center;
+  }
+  .pricing h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: var(--white); margin-bottom: .5rem;
+  }
+  .pricing h2 span { color: var(--accent); }
+  .pricing-sub { color: var(--muted); margin-bottom: 3rem; font-size: .95rem; }
+
+  .price-card {
+    max-width: 480px; margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid rgba(232,255,71,.25);
+    border-radius: 4px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    box-shadow: 0 0 60px rgba(232,255,71,.05);
+  }
+  .price-card-badge {
+    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: var(--black);
+    font-family: var(--font-mono); font-size: .7rem;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: .3rem 1.2rem; border-radius: 0 0 3px 3px;
+    font-weight: 600;
+  }
+  .price-main {
+    font-family: var(--font-display);
+    font-size: 5.5rem; line-height: 1;
+    color: var(--white); margin: 1rem 0 .25rem;
+    letter-spacing: .02em;
+  }
+  .price-main sup {
+    font-size: 2rem; vertical-align: super;
+    color: var(--accent); font-family: var(--font-body); font-weight: 700;
+  }
+  .price-currency-note {
+    font-family: var(--font-mono); font-size: .78rem;
+    color: var(--muted); margin-bottom: 1.5rem;
+  }
+
+  .price-includes { text-align: left; margin: 2rem 0; display: flex; flex-direction: column; gap: .65rem; }
+  .price-include-item {
+    display: flex; gap: .75rem; align-items: center;
+    font-size: .9rem; color: var(--text);
+  }
+  .price-include-item::before {
+    content: '✓';
+    color: var(--accent); font-weight: 700; flex-shrink: 0;
+  }
+  .price-include-item .bonus-tag {
+    font-size: .68rem; background: rgba(255,107,53,.15);
+    color: var(--accent2); padding: .1rem .4rem; border-radius: 2px;
+    font-family: var(--font-mono); margin-left: auto; flex-shrink: 0;
+  }
+
+  .btn-buy {
+    display: block; width: 100%;
+    background: var(--accent); color: var(--black);
+    font-family: var(--font-body); font-weight: 800;
+    font-size: 1.05rem; text-align: center;
+    padding: 1.1rem; border-radius: 2px;
+    text-decoration: none; margin-top: 2rem;
+    transition: transform .2s, box-shadow .2s;
+    position: relative; overflow: hidden;
+  }
+  .btn-buy::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,.12);
+    transform: translateX(-100%); transition: transform .3s;
+  }
+  .btn-buy:hover::before { transform: translateX(0); }
+  .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(232,255,71,.4); }
+
+  .guarantee {
+    margin-top: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    font-size: .8rem; color: var(--muted);
+  }
+  .guarantee span { font-size: 1.1rem; }
+
+  /* ── FAQ ── */
+  .faq { padding: 5rem 5%; max-width: 760px; margin: 0 auto; }
+  .faq h2 {
+    font-family: var(--font-display); font-size: 2.5rem;
+    color: var(--white); margin-bottom: 2.5rem;
+  }
+  .faq h2 span { color: var(--accent); }
+  .faq-list { display: flex; flex-direction: column; gap: 0; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 0; gap: 1rem;
+    text-align: left;
+  }
+  .faq-q-text { font-size: .98rem; font-weight: 600; color: var(--white); font-family: var(--font-body); }
+  .faq-chevron { color: var(--accent); font-size: 1rem; transition: transform .2s; flex-shrink: 0; }
+  .faq-item.open .faq-chevron { transform: rotate(45deg); }
+  .faq-a {
+    font-size: .9rem; color: var(--muted); line-height: 1.75;
+    max-height: 0; overflow: hidden; transition: max-height .3s, padding .3s;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.25rem; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    padding: 8rem 5% 6rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,255,71,.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta h2 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 7rem);
+    color: var(--white); line-height: .95;
+    margin-bottom: 1.5rem;
+  }
+  .final-cta h2 span { color: var(--accent); }
+  .final-cta p { color: var(--muted); font-size: 1rem; max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.7; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 5%;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: .12em; color: var(--muted); }
+  .footer-logo span { color: var(--accent); }
+  .footer-text { font-size: .78rem; color: #444; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: .78rem; color: #555; text-decoration: none; }
+  .footer-links a:hover { color: var(--muted); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp .7s both; }
+  .hero-eyebrow { animation-delay: .1s; }
+  .hero h1      { animation-delay: .2s; }
+  .hero-sub     { animation-delay: .35s; }
+  .hero-cta-group { animation-delay: .5s; }
+  .hero-stats   { animation-delay: .65s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .pain-grid { grid-template-columns: 1fr; }
+    .solution { grid-template-columns: 1fr; gap: 3rem; }
+    .book-mockup { order: -1; }
+    .who { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">SUMMIT<span>HUB</span></a>
+  <a class="nav-cta" href="#buy">Get the Book — R 249</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">South Africa's Career Playbook</div>
+  <h1>
+    <span>DOUBLE</span>
+    <span class="line-accent">YOUR</span>
+    <span class="line-stroke">INCOME</span>
+  </h1>
+  <p class="hero-sub">
+    Most professionals leave <strong>thousands of Rands on the table</strong> every year — not because they lack skill, but because nobody taught them how to ask. This book gives you the courage <em>and</em> the exact plan.
+  </p>
+  <div class="hero-cta-group">
+    <a href="#buy" class="btn-primary">
+      Get Instant Access <span class="arrow">→</span>
+    </a>
+    <div class="price-tag">Only <strong>R 249</strong> · PDF delivered instantly</div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">2<span>×</span></div>
+      <div class="stat-label">Income potential</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">7<span>+</span></div>
+      <div class="stat-label">Proven frameworks</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">SA<span>-</span>First</div>
+      <div class="stat-label">Local context & ZAR data</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30<span>d</span></div>
+      <div class="stat-label">Money-back guarantee</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="section-label">Does any of this sound familiar?</div>
+  <div class="pain-grid">
+    <div class="pain-item">
+      <div class="pain-icon">😶</div>
+      <div class="pain-text">
+        <strong>You stay silent at review time</strong>
+        You know you deserve more but the words just never come out right.
+      </div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">📊</div>
+      <div class="pain-text">
+        <strong>You don't know your market value</strong>
+        No idea if R 18k, R 30k or R 45k is fair for your role in SA right now.
+      </div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">🔄</div>
+      <div class="pain-text">
+        <strong>Colleagues got raises — you didn't</strong>
+        Same work, same hours. But they asked and you didn't. That's the only difference.
+      </div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">💸</div>
+      <div class="pain-text">
+        <strong>Inflation is eating your salary</strong>
+        With SA's cost of living rising, staying still means going backwards financially.
+      </div>
+    </div>
+  </div>
+  <p class="pain-closer">
+    The gap between where you are and where you <em>should</em> be isn't about qualifications.<br>
+    It's about <span>knowing how to have the conversation.</span>
+  </p>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution">
+  <div class="book-mockup">
+    <div class="book-cover">
+      <div class="book-cover-badge">NEW</div>
+      <div class="book-cover-logo">SUMMITHUB</div>
+      <div class="book-cover-icon">⚡</div>
+      <div class="book-cover-line"></div>
+      <div class="book-cover-title">DOUBLE <span>YOUR INCOME</span></div>
+      <div class="book-cover-sub">The SA Salary Playbook</div>
+    </div>
+    <div class="book-shadow"></div>
+  </div>
+  <div class="solution-content">
+    <div class="section-label">The book</div>
+    <h2>Not just a guide.<br><span>A transformation.</span></h2>
+    <p>
+      Most salary books give you <strong>generic American advice</strong> that doesn't work in South Africa. This one is different — every script, every number, every strategy is built for the <strong>SA corporate environment</strong>.
+    </p>
+    <p>
+      Whether you're in Sandton, Cape Town CBD, or working remotely, these frameworks have been tested where it matters: in real South African workplaces.
+    </p>
+    <div class="dual-transform">
+      <div class="transform-item">
+        <div class="transform-num">01</div>
+        <div class="transform-text">
+          <strong>Courage to Act</strong>
+          <span>Rewire the mental blocks that keep you silent. Walk in ready, calm and confident.</span>
+        </div>
+      </div>
+      <div class="transform-item">
+        <div class="transform-num">02</div>
+        <div class="transform-text">
+          <strong>A Concrete Plan</strong>
+          <span>Word-for-word scripts, timing strategy, salary benchmarks in ZAR — everything you need to execute.</span>
+        </div>
+      </div>
+    </div>
+    <a href="#buy" class="btn-primary">
+      I want this <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- CHAPTERS -->
+<section class="chapters">
+  <div class="chapters-header">
+    <h2>What's<br><span>Inside</span></h2>
+    <div class="chapters-count">08 chapters + 2 bonuses</div>
+  </div>
+  <div class="chapters-list">
+    <div class="chapter-item">
+      <div class="ch-num">01</div>
+      <div class="ch-body">
+        <div class="ch-title">Why Most South Africans Never Ask</div>
+        <div class="ch-desc">The cultural and psychological barriers specific to SA workplaces — and how to dissolve them fast.</div>
+      </div>
+      <div class="ch-tag tag-key">Mindset</div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">02</div>
+      <div class="ch-body">
+        <div class="ch-title">Know Your Number: SA Salary Benchmarks by Industry</div>
+        <div class="ch-desc">Real ZAR data across 12 industries. Walk in knowing exactly what you're worth and what to ask for.</div>
+      </div>
+      <div class="ch-tag tag-key">Research</div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">03</div>
+      <div class="ch-body">
+        <div class="ch-title">Build Your Case: The Value Stack Method</div>
+        <div class="ch-desc">How to document and present your contributions so your manager can't say no with a straight face.</div>
+      </div>
+      <div class="ch-tag tag-key">Strategy</div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">04</div>
+      <div class="ch-body">
+        <div class="ch-title">The Conversation: Word-for-Word Scripts</div>
+        <div class="ch-desc">Exactly what to say, how to open, how to handle pushback, and how to close — for SA corporate culture.</div>
+      </div>
+      <div class="ch-tag tag-key">Scripts</div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">05</div>
+      <div class="ch-body">
+        <div class="ch-title">Timing Is Everything: When to Ask in SA</div>
+        <div class="ch-desc">The exact moments in the business calendar when managers are most likely to say yes — and when to stay quiet.</div>
+      </div>
+      <div class="ch-tag tag-key">Execution</div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">06</div>
+      <div class="ch-body">
+        <div class="ch-title">They Said No — Now What?</div>
+        <div class="ch-desc">A refusal isn't the end. This chapter turns "no" into a roadmap with clear milestones and a follow-up plan.</div>
+      </div>
+      <div class="ch-tag tag-key">Recovery</div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">07</div>
+      <div class="ch-body">
+        <div class="ch-title">Beyond the Salary: Total Compensation in SA</div>
+        <div class="ch-desc">Negotiate medical aid, performance bonuses, WFH days and more — even when the salary is "fixed".</div>
+      </div>
+      <div class="ch-tag tag-key">Perks</div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">08</div>
+      <div class="ch-body">
+        <div class="ch-title">The Long Game: Building a Career That Pays</div>
+        <div class="ch-desc">Positioning, visibility and the habits that make your next raise easier than this one.</div>
+      </div>
+      <div class="ch-tag tag-key">Growth</div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">B1</div>
+      <div class="ch-body">
+        <div class="ch-title">BONUS: Email Templates — Ask for a Raise in Writing</div>
+        <div class="ch-desc">3 copy-paste email templates for those who prefer to put it in writing first. Works for remote workers too.</div>
+      </div>
+      <div class="ch-tag tag-bonus">Bonus</div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">B2</div>
+      <div class="ch-body">
+        <div class="ch-title">BONUS: 30-Day Action Checklist</div>
+        <div class="ch-desc">A day-by-day plan to go from reading this book to having the conversation — in under a month.</div>
+      </div>
+      <div class="ch-tag tag-bonus">Bonus</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section class="who">
+  <div>
+    <div class="section-label">Who is this for</div>
+    <h2>Made for<br><span>You</span> if…</h2>
+    <p class="who-intro">This book is for anyone working in South Africa who has ever felt underpaid, overlooked, or unsure how to take the next step.</p>
+    <div class="who-list">
+      <div class="who-item">You're a young professional in your first 1–5 years and want to accelerate faster than your peers</div>
+      <div class="who-item">You've been in the same salary band for 12+ months and feel stuck</div>
+      <div class="who-item">You just got a new job offer and want to negotiate the best possible package</div>
+      <div class="who-item">You're returning to work and need to reposition your value after a career break</div>
+      <div class="who-item">You're in any industry — corporate, tech, finance, healthcare, education, government</div>
+      <div class="who-item">You want to go from surviving to actually building wealth on your salary</div>
+    </div>
+  </div>
+  <div>
+    <div class="who-not">
+      <div class="who-not-title">This is NOT for you if…</div>
+      <div class="who-not-list">
+        <div class="who-not-item">You're looking for a get-rich-quick scheme with no effort</div>
+        <div class="who-not-item">You're self-employed or run your own business (different playbook)</div>
+        <div class="who-not-item">You're not willing to have an uncomfortable conversation</div>
+      </div>
+    </div>
+    <div style="margin-top: 3rem; padding: 2rem; background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--accent);">
+      <div style="font-family: var(--font-display); font-size: 1.8rem; color: var(--white); line-height: 1; margin-bottom: .5rem;">R 249 TODAY.</div>
+      <div style="font-size: .88rem; color: var(--muted); line-height: 1.6;">The average South African professional who successfully negotiates a raise gets <strong style="color: var(--text);">R 1,500 – R 4,000 more per month</strong>. That's R 18,000–R 48,000 more per year. This book costs less than a tank of petrol.</div>
+      <a href="#buy" class="btn-primary" style="margin-top: 1.25rem; display: inline-flex;">Get it now <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label">Early readers</div>
+  <h2>Real results from <span>real people</span></h2>
+  <p class="testi-note">// Swap these with your actual testimonials when you collect them</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-quote">I'd been at the same salary for 2 years. Used the script in Chapter 4 almost word for word. My manager said yes in the same meeting.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">TM</div>
+        <div>
+          <div class="testi-name">Thabo M.</div>
+          <div class="testi-role">IT Project Manager, Gauteng</div>
+        </div>
+      </div>
+      <div class="testi-result">↑ R 3,200 increase per month</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">The salary benchmarks alone were worth it. I didn't realise I was being paid R 8k below market. I had no idea how to even start that conversation.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">NP</div>
+        <div>
+          <div class="testi-name">Nomvula P.</div>
+          <div class="testi-role">Marketing Coordinator, Cape Town</div>
+        </div>
+      </div>
+      <div class="testi-result">↑ R 6,000 increase after job switch</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">They said the salary was fixed. I used Chapter 7 to negotiate an extra 5 days WFH and performance bonus. Total comp went up significantly.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">KD</div>
+        <div>
+          <div class="testi-name">Kagiso D.</div>
+          <div class="testi-role">Financial Analyst, Johannesburg</div>
+        </div>
+      </div>
+      <div class="testi-result">↑ R 28,000 in annual bonuses</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="buy">
+  <div class="section-label">Get the book</div>
+  <h2>One price.<br><span>Life-changing</span> results.</h2>
+  <p class="pricing-sub">Instant PDF delivery. No subscription. No upsells. Just the book.</p>
+
+  <div class="price-card">
+    <div class="price-card-badge">Most Popular</div>
+    <div style="font-family: var(--font-mono); font-size: .72rem; color: var(--muted); letter-spacing: .12em; text-transform: uppercase;">Double Your Income</div>
+    <div class="price-main"><sup>R</sup>249</div>
+    <div class="price-currency-note">ZAR · One-time payment · Instant access</div>
+    <div class="price-includes">
+      <div class="price-include-item">Complete 8-chapter ebook (PDF)</div>
+      <div class="price-include-item">SA salary benchmarks by industry in ZAR</div>
+      <div class="price-include-item">Word-for-word negotiation scripts</div>
+      <div class="price-include-item">Email templates for written requests <span class="bonus-tag">Bonus</span></div>
+      <div class="price-include-item">30-Day action checklist <span class="bonus-tag">Bonus</span></div>
+      <div class="price-include-item">Lifetime access — re-download anytime</div>
+    </div>
+    <!-- REPLACE href below with your actual Payhip product link -->
+    <a href="https://payhip.com/YOUR-PRODUCT-LINK" class="btn-buy" target="_blank">
+      Buy Now — Get Instant Access ↗
+    </a>
+    <div class="guarantee">
+      <span>🔒</span> Secure checkout via PayFast &nbsp;·&nbsp;
+      <span>↩</span> 30-day money-back guarantee
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <h2>Got <span>questions?</span></h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is this relevant to the South African job market?</span>
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-a">100% yes. Every script, salary figure, and strategy in this book is built specifically for South African workplaces — from the corporate culture in Sandton to remote roles in Cape Town. All salary data is in ZAR and sourced from SA salary surveys.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What format is the book and how do I receive it?</span>
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-a">The book is a PDF. Immediately after your payment is processed via PayFast, you'll receive an email with a download link. You can read it on your phone, tablet, or laptop — no special app required.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What if I try it and it doesn't work for me?</span>
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-a">You're covered by a 30-day money-back guarantee. If you implement the strategies and don't feel the book was worth every cent, email us and we'll refund you in full — no questions asked.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">I'm not in a corporate job — does this still apply to me?</span>
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-a">Yes. The frameworks work for any employment situation — permanent roles, fixed-term contracts, government departments, and even freelancers negotiating rates with clients. The core principles apply wherever money is being discussed.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is my payment secure?</span>
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-a">Yes. Payments are processed by PayFast, South Africa's most trusted payment gateway — the same one used by major SA retailers. We never see or store your card details. You can pay by card or instant EFT.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>YOUR RAISE<br><span>WON'T</span><br>ASK ITSELF.</h2>
+  <p>Every month you wait is money you're leaving on the table. The conversation doesn't have to be scary — it just needs a plan.</p>
+  <a href="#buy" class="btn-primary" style="font-size: 1.1rem; padding: 1.1rem 2.8rem; display: inline-flex;">
+    Get the book for R 249 <span class="arrow">→</span>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SUMMIT<span>HUB</span></div>
+  <div class="footer-text">© 2025 SummitHub · Midrand, South Africa · summithub.co.za</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="mailto:hello@summithub.co.za">Contact</a>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Smooth reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section').forEach(s => {
+    if (!s.classList.contains('hero')) {
+      s.style.opacity = '0';
+      s.style.transform = 'translateY(24px)';
+      s.style.transition = 'opacity .6s ease, transform .6s ease';
+      observer.observe(s);
+    }
+  });
+</script>
+
+</body>
+</html>
