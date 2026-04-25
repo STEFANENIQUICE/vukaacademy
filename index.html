@@ -161,7 +161,7 @@
   }
   .hero-image-col img {
     width: 100%;
-    max-width: 640px;
+    max-width: 780px;
     height: auto;
     object-fit: contain;
     display: block;
@@ -793,18 +793,16 @@
     .hero-book-float { display: none; }
   }
 
-  /* ── REAL BOOK IMAGE ── */
   .book-real-img {
-    width: 280px;
+    width: 100%;
+    max-width: 560px;
     border-radius: 8px;
-    transform: rotate(-2deg);
     transition: transform .3s, box-shadow .3s;
-    box-shadow: 20px 20px 60px rgba(0,0,0,.7), 0 0 40px rgba(232,255,71,.08);
     display: block;
+    margin: 0 auto;
   }
   .book-real-img:hover {
-    transform: rotate(0deg) scale(1.03);
-    box-shadow: 24px 24px 80px rgba(0,0,0,.8), 0 0 60px rgba(232,255,71,.15);
+    transform: scale(1.03);
   }
 
   /* ── MOCKUP GALLERY ── */
